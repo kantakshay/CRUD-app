@@ -29,5 +29,11 @@ const addData=()=>{
 }
 
 const postData = () =>{
-  post.innerHTML += `<p>${data.text}</p>`
+  post.innerHTML += `<div><p>${data.text}</p> <button onclick="done(this)">done</button></div>`
+}
+
+const done = (e) =>{
+  const postElement = e.parentElement; // Get the parent element (the post container)
+  postElement.classList.add("completed");         // Add a class to visually indicate completion
+  e.remove(); 
 }
