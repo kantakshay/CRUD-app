@@ -29,6 +29,6 @@ const addData=()=>{
 }
 
 const postData = () =>{
-  post.innerHTML += `<div><p>${data.text}</p> <button onclick="done(this)">done</button></div>`
+  post.innerHTML += `<div><p>${data.text}</p> </div>`
 }
 
