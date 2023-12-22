@@ -29,6 +29,20 @@ const addData=()=>{
 }
 
 const postData = () =>{
-  post.innerHTML += `<div><p>${data.text}</p> </div>`
+  post.innerHTML += `<div>
+  <p>${data.text}</p>
+  <div>
+    <button onclick="deletePost(this)">Delete</button>
+    <button onclick="editPost(this)">Edit</button>
+  </div>
+</div>`
 }
 
+const deletePost = (e) =>{
+  e.parentElement.parentElement.remove();
+}
+
+const editPost = (e) =>{
+input.value = e.parentElement.previousElementSibling.innerHTML;
+e.parentElement.parentElement.remove();
+}
