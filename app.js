@@ -19,23 +19,23 @@ const validation = () => {
   addData();
 };
 
-const data = [];
+let data = [];
 
 const addData = () => {
   data.push({
     tilte: input.value,
     disc: input_disc.value,
   }),
-    (input.value = "");
-  input_disc.value = "";
-  console.log(data);
+
+  console.log(data,"add data");
   localStorage.setItem("data",JSON.stringify(data))
   postData();
 };
 
 const postData = () => {
-  data.map((value) => {
-    return (post.innerHTML += `<div>
+  
+  data.map((value,id) => {
+    return (post.innerHTML += `<div id=${id}>
        <p>${value.tilte}</p>
     <p>${value.disc}</p>
       <div>
@@ -44,15 +44,33 @@ const postData = () => {
       </div>
     </div>`);
   });
+  resetForm();
 };
+
+const resetForm = () =>{
+  input.value = "";
+  input_disc.value = "";
+}
+
+
+const editPost = (e) => {
+  let selectTask = e.parentElement.parentElement;
+  input.value = selectTask.children[0].innerHTML;
+  input_disc.value =selectTask.children[1].innerHTML;
+  e.parentElement.parentElement.remove();
+  deletePost(e);
+};
+
 
 const deletePost = (e) => {
   e.parentElement.parentElement.remove();
+  data.splice( e.parentElement.parentElement.id,1)
+  localStorage.setItem("data",JSON.stringify(data))
+  console.log(data,"delete");
 };
 
-const editPost = (e) => {
-  input.value = e.parentElement.previousElementSibling.innerHTML;
-  e.parentElement.parentElement.remove();
-};
-
-
+(()=>{
+  data = JSON.parse(localStorage.getItem("data")) || [];
+  console.log(data,"local store data");
+  postData()
+})()
