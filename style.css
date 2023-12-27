@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,500&family=Poppins:ital@0;1&family=Roboto+Slab&family=Ubuntu:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,500&family=Poppins:ital@0;1&family=Roboto+Slab&family=Ubuntu:wght@300&display=swap");
 
 * {
   margin: 0;
@@ -24,18 +24,18 @@ body {
   border-radius: 10px;
   background-color: rgb(180, 191, 250);
 }
-.lable{
-    font-size: large;
-    font-weight: 400;
-    font-family: Poppins;
+.lable {
+  font-size: large;
+  font-weight: 400;
+  font-family: Poppins;
 }
-.input-field{
-    border-radius: 10px;   
-    padding: 10px;
+.input-field {
+  border-radius: 10px;
+  padding: 10px;
 }
-.input-field-area{
-    border-radius: 10px;
-    padding: 30px;
+.input-field-area {
+  border-radius: 10px;
+  padding: 30px;
 }
 .display-task {
   display: flex;
@@ -62,23 +62,23 @@ body {
   margin: 20px 10px;
   border-radius: 10px;
   font-family: Poppins;
- box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
 }
-.post-task{
-    background-color: rgb(213, 182, 241);
-    padding: 10px;
+.post-task {
+  background-color: rgb(213, 182, 241);
+  padding: 10px;
 }
 .done-task {
-    background-color: rgb(189, 241, 182);
-    padding: 30px;
+  background-color: rgb(189, 241, 182);
+  padding: 30px;
 }
-.todo-count{
-    font-family: Ubuntu;
+.todo-count {
+  font-family: Ubuntu;
 }
-.para{
+.para {
   margin: 5px 10px;
-    font-size: 20px;
- font-weight: 500;
+  font-size: 20px;
+  font-weight: 500;
 }
 .btn {
   padding: 10px 20px;
@@ -90,7 +90,7 @@ body {
   border: 1px slateblue;
   border-radius: 5px;
 }
-.btn:hover{
-    cursor: pointer;
-    background-color: rgb(182, 253, 135);
+.btn:hover {
+  cursor: pointer;
+  background-color: rgb(182, 253, 135);
 }

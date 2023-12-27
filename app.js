@@ -17,7 +17,6 @@ const validation = () => {
     msg.innerHTML = "";
     addData();
   }
- 
 };
 
 let data = [];
@@ -27,14 +26,16 @@ const addData = () => {
     tilte: input.value,
     disc: input_disc.value,
   }),
-  localStorage.setItem("data", JSON.stringify(data));
+    localStorage.setItem("data", JSON.stringify(data));
   postData();
 };
 
 const postData = () => {
   post.innerHTML = "";
   data.map((value, id) => {
-    return (post.innerHTML += ` <h4 class='todo-count'>TODO No: ${id+1}</h2><div id=${id} class="post-task">
+    return (post.innerHTML += ` <h4 class='todo-count'>TODO No: ${
+      id + 1
+    }</h2><div id=${id} class="post-task">
    
     <div draggable="true">
   
@@ -87,11 +88,13 @@ const doneTask = (e) => {
 const addDoneTask = () => {
   doneTaskdiv.innerHTML = "";
   taskDone.map((val, id) => {
-    return (doneTaskdiv.innerHTML += `<h4 class='todo-count'>Task Done: ${id+1}</h2><div id=${id} class="done-task">
+    return (doneTaskdiv.innerHTML += `<h4 class='todo-count'>Task Done: ${
+      id + 1
+    }</h2><div id=${id} class="done-task">
       <p class="para">${val.tilte}</p>
       <p class="para">${val.disc}</p></div>`);
   });
-}; 
+};
 
 (() => {
   data = JSON.parse(localStorage.getItem("data")) || [];
