@@ -1,4 +1,96 @@
-.completed  > p{
-    color: green;
-    /* background-color: aqua; */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,500&family=Poppins:ital@0;1&family=Roboto+Slab&family=Ubuntu:wght@300&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: rgba(0, 83, 104, 0.596);
+}
+.create {
+  display: flex;
+  justify-content: center;
+}
+
+#form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 300px;
+  height: 300px;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  background-color: rgb(180, 191, 250);
+}
+.lable{
+    font-size: large;
+    font-weight: 400;
+    font-family: Poppins;
+}
+.input-field{
+    border-radius: 10px;   
+    padding: 10px;
+}
+.input-field-area{
+    border-radius: 10px;
+    padding: 30px;
+}
+.display-task {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+#post,
+#doneTask {
+  width: 400px;
+  height: 400px;
+  padding: 40px;
+  border-radius: 10px;
+  margin: 40px;
+  background-color: aliceblue;
+  overflow-y: scroll;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+.post-task,
+.done-task {
+  margin: 20px 10px;
+  border-radius: 10px;
+  font-family: Poppins;
+ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
+}
+.post-task{
+    background-color: rgb(213, 182, 241);
+    padding: 10px;
+}
+.done-task {
+    background-color: rgb(189, 241, 182);
+    padding: 30px;
+}
+.todo-count{
+    font-family: Ubuntu;
+}
+.para{
+  margin: 5px 10px;
+    font-size: 20px;
+ font-weight: 500;
+}
+.btn {
+  padding: 10px 20px;
+  margin: 10px 5px;
+  font-size: medium;
+  font-family: "ubuntu", Times, serif;
+  font-weight: bold;
+  background-color: beige;
+  border: 1px slateblue;
+  border-radius: 5px;
+}
+.btn:hover{
+    cursor: pointer;
+    background-color: rgb(182, 253, 135);
 }

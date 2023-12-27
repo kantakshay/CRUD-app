@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>TODO App</title>
-</head>
-<body>
-  <div class="container">
-    <div class="create">
-      <form id="form">
-        <label for="input">Add your task</label>
-        <br>
-        <input type="text" id="input">
-        <br>
-        <label for="disc">Task Disc</label>
-        <br>
-<textarea type="text"  id="input-disc"></textarea>
-        <div id="msg"></div>
-        <button id="btn">Add</button>
-      </form>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>TODO App</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="create">
+        <form id="form">
+          <h2>Add your task</h2>
 
+          <label for="input" class="lable">Title</label>
+
+          <input type="text" id="input" class="input-field" />
+
+          <label for="disc" class="lable">Task Description</label>
+
+          <textarea type="text" id="input-disc" class="input-field-area"></textarea>
+          <div id="msg"></div>
+          <button id="btn" class="btn">Add Task</button>
+        </form>
+      </div>
+      <div class="display">
+        
+        <div class="display-task">
+        
+          <div id="post">
+           
+          </div>
+          <div id="doneTask"></div>
+        </div>
+      </div>
     </div>
-    <div class="display">
-      <h3>Todo's</h3>
-      <div id="post"></div>
-    </div>
-  </div>
-  <script src="./app.js"></script>
-</body>
+    <script src="./app.js"></script>
+  </body>
 </html>
