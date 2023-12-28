@@ -1,16 +1,22 @@
 const checkLocalStorageData = () => {
-  data = JSON.parse(localStorage.getItem("data")) || [];
-  taskDone = JSON.parse(localStorage.getItem("doneData")) || [];
-  console.log(data);
+  let data = JSON.parse(localStorage.getItem("data")) || [];
+  let taskDone = JSON.parse(localStorage.getItem("doneData")) || [];
 
   if (data.length === 0 && taskDone.length === 0) {
     post.style.display = "none";
     doneTaskdiv.style.display = "none";
+  } else if (data.length === 0) {
+    post.style.display = "none";
+    doneTaskdiv.style.display = "block"; 
+  } else if (taskDone.length === 0) {
+    doneTaskdiv.style.display = "none";
+    post.style.display = "block";
   } else {
     post.style.display = "block";
     doneTaskdiv.style.display = "block";
   }
 };
+
 
 const form = document.getElementById("form");
 const input = document.getElementById("input");
@@ -41,8 +47,8 @@ const addData = () => {
     disc: input_disc.value,
   }),
     localStorage.setItem("data", JSON.stringify(data));
-    checkLocalStorageData()
   postData();
+  checkLocalStorageData()
 };
 
 const postData = () => {
@@ -68,7 +74,6 @@ const postData = () => {
     </div>`);
   });
   resetForm();
-  checkLocalStorageData()
 };
 
 const resetForm = () => {
@@ -85,7 +90,17 @@ const editPost = (e) => {
 };
 
 const deletePost = (e) => {
-  e.parentElement.parentElement.parentElement.remove();
+  const taskDiv = e.parentElement.parentElement.parentElement;
+
+  const h4Element = taskDiv.querySelector('h4');
+  if (h4Element) {
+    h4Element.remove();
+  }
+
+  const subDivElement = taskDiv.querySelector('div');
+  if (subDivElement) {
+    subDivElement.remove();
+  }
   data.splice(e.parentElement.parentElement.id, 1);
   localStorage.setItem("data", JSON.stringify(data));
   checkLocalStorageData()
@@ -100,12 +115,12 @@ const doneTask = (e) => {
   taskDone.push(taskDoneData[0]);
   localStorage.setItem("doneData", JSON.stringify(taskDone));
   deletePost(e);
-  checkLocalStorageData()
   addDoneTask();
 };
 
 const addDoneTask = () => {
   doneTaskdiv.innerHTML = "";
+  doneTaskdiv.style.display = "block"; 
   taskDone.map((val, id) => {
     return (doneTaskdiv.innerHTML += `<h4 class='todo-count'>Task Done: ${
       id + 1
@@ -119,8 +134,20 @@ const addDoneTask = () => {
   });
 };
 const deleteDoneTask = (e) => {
-  e.parentElement.parentElement.parentElement.remove();
+  const taskDiv = e.parentElement.parentElement.parentElement;
+
+  const h4Element = taskDiv.querySelector('h4');
+  if (h4Element) {
+    h4Element.remove();
+  }
+
+  const subDivElement = taskDiv.querySelector('div');
+  if (subDivElement) {
+    subDivElement.remove();
+  }
+
   taskDone.splice(e.parentElement.parentElement.id, 1);
+
   localStorage.setItem("doneData", JSON.stringify(taskDone));
   checkLocalStorageData()
 };
