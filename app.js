@@ -33,7 +33,7 @@ const addData = () => {
 const postData = () => {
   post.innerHTML = "";
   data.map((value, id) => {
-    return (post.innerHTML += ` <h4 class='todo-count'>TODO No: ${
+    return (post.innerHTML += ` <div><h4 class='todo-count'>TODO No: ${
       id + 1
     }</h2><div id=${id} class="post-task">
    
@@ -49,6 +49,7 @@ const postData = () => {
         <button  class="btn" onclick="doneTask(this)">Done</button>
         <button class="delete-btn" onclick="deletePost(this)">Delete</button>
       </div>
+    </div>
     </div>`);
   });
   resetForm();
@@ -68,7 +69,7 @@ const editPost = (e) => {
 };
 
 const deletePost = (e) => {
-  e.parentElement.parentElement.remove();
+  e.parentElement.parentElement.parentElement.remove();
   data.splice(e.parentElement.parentElement.id, 1);
   localStorage.setItem("data", JSON.stringify(data));
 };
@@ -100,7 +101,7 @@ const addDoneTask = () => {
   });
 };
 const deleteDoneTask = (e) => {
-  e.parentElement.parentElement.remove();
+  e.parentElement.parentElement.parentElement.remove();
   taskDone.splice(e.parentElement.parentElement.id, 1);
   localStorage.setItem("doneData", JSON.stringify(taskDone));
 };
