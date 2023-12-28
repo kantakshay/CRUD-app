@@ -1,3 +1,17 @@
+const checkLocalStorageData = () => {
+  data = JSON.parse(localStorage.getItem("data")) || [];
+  taskDone = JSON.parse(localStorage.getItem("doneData")) || [];
+  console.log(data);
+
+  if (data.length === 0 && taskDone.length === 0) {
+    post.style.display = "none";
+    doneTaskdiv.style.display = "none";
+  } else {
+    post.style.display = "block";
+    doneTaskdiv.style.display = "block";
+  }
+};
+
 const form = document.getElementById("form");
 const input = document.getElementById("input");
 const input_disc = document.getElementById("input-disc");
@@ -27,6 +41,7 @@ const addData = () => {
     disc: input_disc.value,
   }),
     localStorage.setItem("data", JSON.stringify(data));
+    checkLocalStorageData()
   postData();
 };
 
@@ -53,6 +68,7 @@ const postData = () => {
     </div>`);
   });
   resetForm();
+  checkLocalStorageData()
 };
 
 const resetForm = () => {
@@ -72,6 +88,7 @@ const deletePost = (e) => {
   e.parentElement.parentElement.parentElement.remove();
   data.splice(e.parentElement.parentElement.id, 1);
   localStorage.setItem("data", JSON.stringify(data));
+  checkLocalStorageData()
 };
 
 let taskDone = [];
@@ -83,6 +100,7 @@ const doneTask = (e) => {
   taskDone.push(taskDoneData[0]);
   localStorage.setItem("doneData", JSON.stringify(taskDone));
   deletePost(e);
+  checkLocalStorageData()
   addDoneTask();
 };
 
@@ -104,6 +122,7 @@ const deleteDoneTask = (e) => {
   e.parentElement.parentElement.parentElement.remove();
   taskDone.splice(e.parentElement.parentElement.id, 1);
   localStorage.setItem("doneData", JSON.stringify(taskDone));
+  checkLocalStorageData()
 };
 
 (() => {
@@ -112,3 +131,5 @@ const deleteDoneTask = (e) => {
   postData();
   addDoneTask();
 })();
+
+window.addEventListener("load", checkLocalStorageData);
