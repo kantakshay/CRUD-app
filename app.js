@@ -45,9 +45,9 @@ const postData = () => {
     <p class="para"> ${value.disc}</p>
     </div>
       <div>
-        <button class="btn" onclick="deletePost(this)">Delete</button>
         <button class="btn" onclick="editPost(this)">Edit</button>
         <button  class="btn" onclick="doneTask(this)">Done</button>
+        <button class="delete-btn" onclick="deletePost(this)">Delete</button>
       </div>
     </div>`);
   });
@@ -92,8 +92,17 @@ const addDoneTask = () => {
       id + 1
     }</h2><div id=${id} class="done-task">
       <p class="para">${val.tilte}</p>
-      <p class="para">${val.disc}</p></div>`);
+      <p class="para">${val.disc}</p>
+      <div>
+      <button  class="delete-btn" onclick="deleteDoneTask(this)">Delete</button>
+      </div>
+      </div>`);
   });
+};
+const deleteDoneTask = (e) => {
+  e.parentElement.parentElement.remove();
+  taskDone.splice(e.parentElement.parentElement.id, 1);
+  localStorage.setItem("doneData", JSON.stringify(taskDone));
 };
 
 (() => {
