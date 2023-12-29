@@ -4,6 +4,9 @@ const input_disc = document.getElementById("input-disc");
 const msg = document.getElementById("msg");
 const post = document.getElementById("post");
 const doneTaskdiv = document.getElementById("doneTask");
+const displayPost = document.querySelector(".display-task-post")
+const displayDoneTask = document.querySelector(".display-task-done")
+
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -18,7 +21,12 @@ const validation = () => {
     addData();
   }
 };
-
+const checkLocalStorageData = () => {
+  let data = JSON.parse(localStorage.getItem("data")) || [];
+  let taskDone = JSON.parse(localStorage.getItem("doneData")) || [];
+  displayPost.style.display = data.length > 0 ? "block" : "none";
+  displayDoneTask.style.display = taskDone.length > 0 ? "block" : "none";
+};
 let data = [];
 
 const addData = () => {
@@ -33,9 +41,7 @@ const addData = () => {
 const postData = () => {
   post.innerHTML = "";
   data.map((value, id) => {
-    return (post.innerHTML += ` <div><h4 class='todo-count'>TODO No: ${
-      id + 1
-    }</h2><div id=${id} class="post-task">
+    return (post.innerHTML += ` <div id=${id} class="post-task">
    
     <div draggable="true">
   
@@ -53,13 +59,19 @@ const postData = () => {
     </div>`);
   });
   resetForm();
+  checkLocalStorageData()
 };
 
 const resetForm = () => {
   input.value = "";
   input_disc.value = "";
 };
-
+const deletePost = (e) => {
+  e.parentElement.parentElement.remove();
+  data.splice(e.parentElement.parentElement.id, 1);
+  localStorage.setItem("data", JSON.stringify(data));
+  checkLocalStorageData()
+};
 const editPost = (e) => {
   let selectTask = e.parentElement.previousElementSibling;
   input.value = selectTask.children[0].innerHTML;
@@ -68,11 +80,7 @@ const editPost = (e) => {
   deletePost(e);
 };
 
-const deletePost = (e) => {
-  e.parentElement.parentElement.parentElement.remove();
-  data.splice(e.parentElement.parentElement.id, 1);
-  localStorage.setItem("data", JSON.stringify(data));
-};
+
 
 let taskDone = [];
 
@@ -84,14 +92,13 @@ const doneTask = (e) => {
   localStorage.setItem("doneData", JSON.stringify(taskDone));
   deletePost(e);
   addDoneTask();
+  checkLocalStorageData()
 };
 
 const addDoneTask = () => {
   doneTaskdiv.innerHTML = "";
   taskDone.map((val, id) => {
-    return (doneTaskdiv.innerHTML += `<h4 class='todo-count'>Task Done: ${
-      id + 1
-    }</h2><div id=${id} class="done-task">
+    return (doneTaskdiv.innerHTML += `<div id=${id} class="done-task">
       <p class="para">${val.tilte}</p>
       <p class="para">${val.disc}</p>
       <div>
@@ -101,14 +108,18 @@ const addDoneTask = () => {
   });
 };
 const deleteDoneTask = (e) => {
-  e.parentElement.parentElement.parentElement.remove();
+  e.parentElement.parentElement.remove();
   taskDone.splice(e.parentElement.parentElement.id, 1);
   localStorage.setItem("doneData", JSON.stringify(taskDone));
+  checkLocalStorageData()
 };
+
+
 
 (() => {
   data = JSON.parse(localStorage.getItem("data")) || [];
   taskDone = JSON.parse(localStorage.getItem("doneData")) || [];
   postData();
   addDoneTask();
+  checkLocalStorageData()
 })();
